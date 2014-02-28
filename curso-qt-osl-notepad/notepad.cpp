@@ -156,7 +156,7 @@ void Notepad::alGuardar()
 
 void Notepad::alSalir()
 {
-
+    exit(0);
 }
 
 void Notepad::alFuente()
