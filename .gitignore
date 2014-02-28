@@ -3,3 +3,6 @@
 
 # Configuración de Qt Creator
 *.pro.user
+
+# Debug
+build-curso-qt-osl-notepad-Desktop_Qt_5_2_1_GCC_32bit-Debug/
