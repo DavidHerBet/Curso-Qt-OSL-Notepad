@@ -171,5 +171,12 @@ void Notepad::alFuente()
 
 void Notepad::alAcercaDe()
 {
-
+    QMessageBox acercaDe;
+    acercaDe.setWindowTitle(tr("Acerca de"));
+    acercaDe.setText(tr("Bloc de notas creado por David "
+                        "Hernández Bethencourt en el curso "
+                        "de Qt de la Oficina del Software Libre "
+                        "(OSL) de la Universidad de La Laguna"));
+    acercaDe.addButton(tr("Cerrar"), QMessageBox::RejectRole);
+    acercaDe.exec();
 }
