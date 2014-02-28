@@ -7,6 +7,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QFileDialog>
+#include <QFontDialog>
 
 class Notepad : public QMainWindow
 {

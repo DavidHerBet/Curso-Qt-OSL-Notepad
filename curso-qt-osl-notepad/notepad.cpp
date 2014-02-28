@@ -161,7 +161,12 @@ void Notepad::alSalir()
 
 void Notepad::alFuente()
 {
+    bool accept;
+    QFont font = QFontDialog::getFont(&accept, txtEditor_->font(), this);
 
+    // Si el usuario acepta, se establece la fuente elegida
+    if (accept)
+        txtEditor_->setFont(font);
 }
 
 void Notepad::alAcercaDe()
