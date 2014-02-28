@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QPlainTextEdit>
+#include <QMenuBar>
+#include <QMenu>
 
 class Notepad : public QMainWindow
 {
@@ -15,6 +17,15 @@ public:
 private:
     // Editor de texto
     QPlainTextEdit *txtEditor_;
+
+    // Barra de menú
+    QMenuBar *mainMenu_;
+
+    // Elementos del menú
+    QMenu *mnuArchivo_;
+    QMenu *mnuEditar_;
+    QMenu *mnuFormato_;
+    QMenu *mnuAyuda_;
 };
 
 #endif // NOTEPAD_H
