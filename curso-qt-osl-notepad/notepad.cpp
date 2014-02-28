@@ -31,6 +31,65 @@ Notepad::Notepad(QWidget *parent)
 
     // Agregamos el menú a la ventana (QMainWindow)
     setMenuBar(mainMenu_);
+
+    // Inicializamos las acciones de los elementos del menú
+    // Agregamos los shortcuts a las acciones correspondientes
+    // Añadimos la acción al menu correspondiente
+
+    // ARCHIVO
+    actArchivoAbrir_ = new QAction(tr("Abrir..."), this);
+    actArchivoAbrir_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+    mnuArchivo_->addAction(actArchivoAbrir_);
+
+    actArchivoGuardar_ = new QAction(tr("Guardar"), this);
+    actArchivoGuardar_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+    mnuArchivo_->addAction(actArchivoGuardar_);
+
+    // Añadir separador para agrupar
+    mnuArchivo_->addSeparator();
+
+    actArchivoSalir_ = new QAction(tr("Salir"), this);
+    actArchivoSalir_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
+    mnuArchivo_->addAction(actArchivoSalir_);
+
+    // EDITAR
+    actEditarDeshacer_ = new QAction(tr("Deshacer"), this);
+    actEditarDeshacer_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+    mnuEditar_->addAction(actEditarDeshacer_);
+
+    actEditarRehacer_ = new QAction(tr("Rehacer"), this);
+    actEditarRehacer_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Z));
+    mnuEditar_->addAction(actEditarRehacer_);
+
+    // Añadir separador para agrupar
+    mnuEditar_->addSeparator();
+
+    actEditarCortar_ = new QAction(tr("Cortar"), this);
+    actEditarCortar_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_X));
+    mnuEditar_->addAction(actEditarCortar_);
+
+    actEditarCopiar_ = new QAction(tr("Copiar"), this);
+    actEditarCopiar_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_C));
+    mnuEditar_->addAction(actEditarCopiar_);
+
+    actEditarPegar_ = new QAction(tr("Pegar"), this);
+    actEditarPegar_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_V));
+    mnuEditar_->addAction(actEditarPegar_);
+
+    // Añadir separador para agrupar
+    mnuEditar_->addSeparator();
+
+    actEditarSeleccionarTodo_ = new QAction(tr("Seleccionar todo"), this);
+    actEditarSeleccionarTodo_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
+    mnuEditar_->addAction(actEditarSeleccionarTodo_);
+
+    // FORMATO
+    actFormatoFuente_ = new QAction(tr("Fuente"), this);
+    mnuFormato_->addAction(actFormatoFuente_);
+
+    // AYUDA
+    actAyudaAcercaDe_ = new QAction(tr("Acerca de"), this);
+    mnuAyuda_->addAction(actAyudaAcercaDe_);
 }
 
 Notepad::~Notepad()

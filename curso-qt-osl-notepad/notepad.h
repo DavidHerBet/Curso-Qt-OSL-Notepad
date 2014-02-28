@@ -5,6 +5,7 @@
 #include <QPlainTextEdit>
 #include <QMenuBar>
 #include <QMenu>
+#include <QAction>
 
 class Notepad : public QMainWindow
 {
@@ -26,6 +27,25 @@ private:
     QMenu *mnuEditar_;
     QMenu *mnuFormato_;
     QMenu *mnuAyuda_;
+
+    // Acciones de Archivo
+    QAction *actArchivoAbrir_;
+    QAction *actArchivoGuardar_;
+    QAction *actArchivoSalir_;
+
+    // Acciones de Editar
+    QAction *actEditarDeshacer_;
+    QAction *actEditarRehacer_;
+    QAction *actEditarCortar_;
+    QAction *actEditarCopiar_;
+    QAction *actEditarPegar_;
+    QAction *actEditarSeleccionarTodo_;
+
+    // Acciones de Formato
+    QAction *actFormatoFuente_;
+
+    // Acciones de Ayuda
+    QAction *actAyudaAcercaDe_;
 };
 
 #endif // NOTEPAD_H
