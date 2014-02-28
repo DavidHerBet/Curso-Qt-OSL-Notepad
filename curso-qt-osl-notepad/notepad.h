@@ -15,6 +15,13 @@ public:
     Notepad(QWidget *parent = 0);
     ~Notepad();
 
+private slots:
+    void alAbrir();
+    void alGuardar();
+    void alSalir();
+    void alFuente();
+    void alAcercaDe();
+
 private:
     // Editor de texto
     QPlainTextEdit *txtEditor_;
