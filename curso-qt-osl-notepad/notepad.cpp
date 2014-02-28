@@ -111,7 +111,18 @@ Notepad::~Notepad()
 
 void Notepad::alAbrir()
 {
-
+    QString nombreArchivo;
+    nombreArchivo = QFileDialog::getOpenFileName(this, tr("Abrir archivo de texto plano"),
+                                                 "",
+                                                 tr("Archivos de texto plano (*.txt)"));
+    if (nombreArchivo != "") {
+        QFile archivo;
+        archivo.setFileName(nombreArchivo);
+        if (archivo.open(QFile::ReadOnly)) {
+            txtEditor_->setPlainText(archivo.readAll());
+            archivo.close();
+        }
+    }
 }
 
 void Notepad::alGuardar()
