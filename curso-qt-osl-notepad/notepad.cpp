@@ -127,7 +127,31 @@ void Notepad::alAbrir()
 
 void Notepad::alGuardar()
 {
+    QString nombreArchivo;
+    nombreArchivo = QFileDialog::getSaveFileName(this, tr("Guardar como"),
+                                                 "",
+                                                 tr("Archivos de texto plano (*.txt)"));
+    if (nombreArchivo != "") {
+        QFile archivo;
 
+        // Asignamos la expresión regular para archivos de texto
+        QRegExp regexp("*.txt");
+
+        // Imitamos el matching de regexp de la shell
+        regexp.setPatternSyntax(QRegExp::Wildcard);
+
+        // Si el nombre elegido no termina en .txt se lo añadimos
+        if (!regexp.exactMatch(nombreArchivo))
+            archivo.setFileName(nombreArchivo + ".txt");
+        else
+            archivo.setFileName(nombreArchivo);
+
+        // Guardamos el archivo
+        if (archivo.open(QFile::WriteOnly)) {
+            archivo.write(txtEditor_->toPlainText().toUtf8());
+            archivo.close();
+        }
+    }
 }
 
 void Notepad::alSalir()
