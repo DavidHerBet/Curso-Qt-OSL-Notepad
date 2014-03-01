@@ -60,6 +60,7 @@ private:
 
     // Menú de herramientas
     QToolBar *mainToolbar_;
+    QAction *waca;
 };
 
 #endif // NOTEPAD_H

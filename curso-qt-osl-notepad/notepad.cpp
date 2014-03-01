@@ -8,7 +8,7 @@ Notepad::Notepad(QWidget *parent)
                    "- David Hernández Bethencourt");
 
     // Establecemos el tamaño inicial de la ventana
-    setGeometry(30,30,600,500);
+    setGeometry(30,30,750,550);
 
     // Inicializamos el editor de texto
     txtEditor_ = new QPlainTextEdit(this);
@@ -110,6 +110,29 @@ Notepad::Notepad(QWidget *parent)
     mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
     mainToolbar_->setMovable(false);
 
+    // Definimos que el texto se muestre a la derecha del icono
+    mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+    // Definimos iconos para las acciones del toolbar
+    actArchivoAbrir_->setIcon(QIcon(":/iconos/resources/Abrir.png"));
+    actArchivoGuardar_->setIcon(QIcon(":/iconos/resources/Guardar.png"));
+    actEditarDeshacer_->setIcon(QIcon(":/iconos/resources/Deshacer.png"));
+    actEditarRehacer_->setIcon(QIcon(":/iconos/resources/Rehacer.png"));
+    actEditarCortar_->setIcon(QIcon(":/iconos/resources/Cortar.png"));
+    actEditarCopiar_->setIcon(QIcon(":/iconos/resources/Copiar.png"));
+    actEditarPegar_->setIcon(QIcon(":/iconos/resources/Pegar.png"));
+    actFormatoFuente_->setIcon(QIcon(":/iconos/resources/Fuente.png"));
+
+    // Hacemos que los iconos no sean visibles desde el menú
+    actArchivoAbrir_->setIconVisibleInMenu(false);
+    actArchivoGuardar_->setIconVisibleInMenu(false);
+    actEditarDeshacer_->setIconVisibleInMenu(false);
+    actEditarRehacer_->setIconVisibleInMenu(false);
+    actEditarCortar_->setIconVisibleInMenu(false);
+    actEditarCopiar_->setIconVisibleInMenu(false);
+    actEditarPegar_->setIconVisibleInMenu(false);
+    actFormatoFuente_->setIconVisibleInMenu(false);
+
     // Añadimos las acciones al toolbar
     mainToolbar_->addAction(actArchivoAbrir_);
     mainToolbar_->addAction(actArchivoGuardar_);
@@ -149,7 +172,7 @@ void Notepad::alAbrir()
 void Notepad::alGuardar()
 {
     QString nombreArchivo;
-    nombreArchivo = QFileDialog::getSaveFileName(this, tr("Guardar como"),
+    nombreArchivo = QFileDialog::getSaveFileName(this, tr("Guardar"),
                                                  "",
                                                  tr("Archivos de texto plano (*.txt)"));
     if (nombreArchivo != "") {
