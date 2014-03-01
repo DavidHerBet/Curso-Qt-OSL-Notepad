@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QMessageBox>
+#include <QToolBar>
 
 class Notepad : public QMainWindow
 {
@@ -56,6 +57,9 @@ private:
 
     // Acciones de Ayuda
     QAction *actAyudaAcercaDe_;
+
+    // Menú de herramientas
+    QToolBar *mainToolbar_;
 };
 
 #endif // NOTEPAD_H

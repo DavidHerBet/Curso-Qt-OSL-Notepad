@@ -102,6 +102,27 @@ Notepad::Notepad(QWidget *parent)
     connect(actEditarSeleccionarTodo_, SIGNAL(triggered()), txtEditor_, SLOT(selectAll()));
     connect(actFormatoFuente_, SIGNAL(triggered()), this, SLOT(alFuente()));
     connect(actAyudaAcercaDe_, SIGNAL(triggered()), this, SLOT(alAcercaDe()));
+
+    // Inicializamos el toolbar
+    mainToolbar_ = new QToolBar(this);
+
+    // Mantenemos el toolbar fijo arriba
+    mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
+    mainToolbar_->setMovable(false);
+
+    // Añadimos las acciones al toolbar
+    mainToolbar_->addAction(actArchivoAbrir_);
+    mainToolbar_->addAction(actArchivoGuardar_);
+    mainToolbar_->addAction(actEditarDeshacer_);
+    mainToolbar_->addAction(actEditarRehacer_);
+    mainToolbar_->addAction(actEditarCortar_);
+    mainToolbar_->addAction(actEditarCopiar_);
+    mainToolbar_->addAction(actEditarPegar_);
+    mainToolbar_->addAction(actFormatoFuente_);
+
+    // Agregamos el toolbar a la ventana
+    addToolBar(mainToolbar_);
+
 }
 
 Notepad::~Notepad()
