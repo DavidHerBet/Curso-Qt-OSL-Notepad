@@ -1,5 +1,6 @@
 # Archivos de intercambio
 *~
+*.autosave
 
 # Configuración de Qt Creator
 *.pro.user
