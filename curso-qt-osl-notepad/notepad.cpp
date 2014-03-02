@@ -11,7 +11,7 @@ Notepad::Notepad(QWidget *parent)
     setGeometry(30,30,750,550);
 
     // Inicializamos el editor de texto
-    txtEditor_ = new QPlainTextEdit(this);
+    txtEditor_ = new QTextEdit(this);
 
     // Agregamos nuestro editor de texto a la ventana
     setCentralWidget(txtEditor_);
@@ -156,9 +156,9 @@ Notepad::~Notepad()
 void Notepad::alAbrir()
 {
     QString nombreArchivo;
-    nombreArchivo = QFileDialog::getOpenFileName(this, tr("Abrir archivo de texto plano"),
+    nombreArchivo = QFileDialog::getOpenFileName(this, tr("Abrir archivo de texto plano o HTML"),
                                                  "",
-                                                 tr("Archivos de texto plano (*.txt)"));
+                                                 tr("Archivos de texto plano y HTML (*.txt *.html)"));
     if (nombreArchivo != "") {
         QFile archivo;
         archivo.setFileName(nombreArchivo);
@@ -174,26 +174,48 @@ void Notepad::alGuardar()
     QString nombreArchivo;
     nombreArchivo = QFileDialog::getSaveFileName(this, tr("Guardar"),
                                                  "",
-                                                 tr("Archivos de texto plano (*.txt)"));
+                                                 tr("Archivos de texto plano y HTML (*.txt *.html)"));
     if (nombreArchivo != "") {
         QFile archivo;
 
-        // Asignamos la expresión regular para archivos de texto
-        QRegExp regexp("*.txt");
+        // Asignamos la expresión regular para archivos de texto plano y html
+        QRegExp regexTxt("*.txt", Qt::CaseInsensitive, QRegExp::WildcardUnix);
+        QRegExp regexHtml("*.html", Qt::CaseInsensitive, QRegExp::WildcardUnix);
 
-        // Imitamos el matching de regexp de la shell
-        regexp.setPatternSyntax(QRegExp::Wildcard);
+        // Si el nombre elegido no termina en .txt o en .html
+        // Se entiende que es texto plano se lo añadimos
+        if (regexTxt.exactMatch(nombreArchivo)) {
 
-        // Si el nombre elegido no termina en .txt se lo añadimos
-        if (!regexp.exactMatch(nombreArchivo))
-            archivo.setFileName(nombreArchivo + ".txt");
-        else
             archivo.setFileName(nombreArchivo);
 
-        // Guardamos el archivo
-        if (archivo.open(QFile::WriteOnly)) {
-            archivo.write(txtEditor_->toPlainText().toUtf8());
-            archivo.close();
+            // Guardamos el archivo como texto plano
+            if (archivo.open(QFile::WriteOnly)) {
+                archivo.write(txtEditor_->toPlainText().toUtf8());
+                archivo.close();
+            }
+        }
+        else {
+            if (regexHtml.exactMatch(nombreArchivo)) {
+                archivo.setFileName(nombreArchivo);
+
+                // Guardamos el archivo como html
+                if (archivo.open(QFile::WriteOnly)) {
+                    archivo.write(txtEditor_->toHtml().toUtf8());
+                    archivo.close();
+                }
+
+            }
+            else {
+                // Se entiende que tiene otra extensión y se guarda como texto plano
+
+                archivo.setFileName(nombreArchivo + ".txt");
+
+                // Guardamos el archivo
+                if (archivo.open(QFile::WriteOnly)) {
+                    archivo.write(txtEditor_->toPlainText().toUtf8());
+                    archivo.close();
+                }
+            }
         }
     }
 }

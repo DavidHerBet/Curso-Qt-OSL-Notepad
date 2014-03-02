@@ -2,7 +2,7 @@
 #define NOTEPAD_H
 
 #include <QMainWindow>
-#include <QPlainTextEdit>
+#include <QTextEdit>
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
@@ -28,7 +28,7 @@ private slots:
 
 private:
     // Editor de texto
-    QPlainTextEdit *txtEditor_;
+    QTextEdit *txtEditor_;
 
     // Barra de menú
     QMenuBar *mainMenu_;
