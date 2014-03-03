@@ -25,6 +25,9 @@ private slots:
     void alSalir();
     void alFuente();
     void alAcercaDe();
+    void alNegrita();
+    void alCursiva();
+    void alSubrayado();
 
 private:
     // Editor de texto
@@ -60,7 +63,12 @@ private:
 
     // Menú de herramientas
     QToolBar *mainToolbar_;
-    QAction *waca;
+
+    // EXTRAS
+    QToolBar *extraToolbar_;
+    QAction *actEditarNegrita_;
+    QAction *actEditarCursiva_;
+    QAction *actEditarSubrayado_;
 };
 
 #endif // NOTEPAD_H

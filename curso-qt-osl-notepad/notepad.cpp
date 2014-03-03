@@ -146,6 +146,29 @@ Notepad::Notepad(QWidget *parent)
     // Agregamos el toolbar a la ventana
     addToolBar(mainToolbar_);
 
+    // EXTRAS
+    // Nuevo toolbar
+    addToolBarBreak();
+    extraToolbar_ = new QToolBar(this);
+    extraToolbar_->setAllowedAreas(Qt::TopToolBarArea);
+    extraToolbar_->setMovable(false);
+    addToolBar(extraToolbar_);
+
+    // Definimos las acciones
+    actEditarNegrita_ = new QAction(QIcon(":/iconos/resources/Negrita.png"), tr("Negrita"), this);
+    actEditarCursiva_ = new QAction(QIcon(":/iconos/resources/Cursiva.png"), tr("Cursiva"), this);
+    actEditarSubrayado_ = new QAction(QIcon(":/iconos/resources/Subrayado.png"), tr("Subrayado"), this);
+
+    // Las agregamos al toolbar
+    extraToolbar_->addAction(actEditarNegrita_);
+    extraToolbar_->addAction(actEditarCursiva_);
+    extraToolbar_->addAction(actEditarSubrayado_);
+
+    // Conectamos las acciones
+    connect(actEditarNegrita_, SIGNAL(triggered()), this, SLOT(alNegrita()));
+    connect(actEditarCursiva_, SIGNAL(triggered()), this, SLOT(alCursiva()));
+    connect(actEditarSubrayado_, SIGNAL(triggered()), this, SLOT(alSubrayado()));
+
 }
 
 Notepad::~Notepad()
@@ -245,4 +268,28 @@ void Notepad::alAcercaDe()
                         "(OSL) de la Universidad de La Laguna"));
     acercaDe.addButton(tr("Cerrar"), QMessageBox::RejectRole);
     acercaDe.exec();
+}
+
+void Notepad::alNegrita()
+{
+    if (txtEditor_->fontWeight() != QFont::Black)
+        txtEditor_->setFontWeight(QFont::Black);
+    else
+        txtEditor_->setFontWeight(QFont::Normal);
+}
+
+void Notepad::alCursiva()
+{
+    if (!txtEditor_->fontItalic())
+        txtEditor_->setFontItalic(true);
+    else
+        txtEditor_->setFontItalic(false);
+}
+
+void Notepad::alSubrayado()
+{
+    if (!txtEditor_->fontUnderline())
+        txtEditor_->setFontUnderline(true);
+    else
+        txtEditor_->setFontUnderline(false);
 }
