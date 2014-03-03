@@ -8,5 +8,8 @@
         <file>resources/Pegar.png</file>
         <file>resources/Rehacer.png</file>
         <file>resources/Fuente.png</file>
+        <file>resources/Cursiva.png</file>
+        <file>resources/Negrita.png</file>
+        <file>resources/Subrayado.png</file>
     </qresource>
 </RCC>
