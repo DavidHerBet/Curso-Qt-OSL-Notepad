@@ -254,8 +254,19 @@ void Notepad::alFuente()
     QFont font = QFontDialog::getFont(&accept, txtEditor_->font(), this);
 
     // Si el usuario acepta, se establece la fuente elegida
-    if (accept)
-        txtEditor_->setFont(font);
+    if (accept) {
+        QTextCursor txtCursor = txtEditor_->textCursor();
+
+        // Si no se ha seleccionado el texto, se aplica a todo el documento
+        if (!txtCursor.hasSelection())
+            txtEditor_->setFont(font);
+        else {
+            QTextCharFormat formato;
+            formato.setFont(font);
+            txtCursor.setCharFormat(formato);
+            txtEditor_->setTextCursor(txtCursor);
+        }
+    }
 }
 
 void Notepad::alAcercaDe()
